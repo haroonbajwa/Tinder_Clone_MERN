@@ -2,11 +2,12 @@ import express from 'express'
 import mongoose from 'mongoose'
 import Cards from './dbCards.js'
 import Cors from 'cors'
+import dotenv from 'dotenv'
 
 // App config
 const app = express();
+dotenv.config();
 const port = process.env.PORT || 8001
-const connectoin_url = 'mongodb+srv://haroonbajwa99:hbgp9999@cluster0.v4pxb.mongodb.net/tinderdb?retryWrites=true&w=majority';
 
 
 // Middlewares
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(Cors());
 
 // DB config
-mongoose.connect(connectoin_url, {
+mongoose.connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
